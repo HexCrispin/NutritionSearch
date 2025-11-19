@@ -1,7 +1,6 @@
 package com.nutrition.controller;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -79,7 +78,6 @@ class NutritionControllerTest {
     }
 
     @Nested
-    @Disabled("Until all steps implemented")
     class AllParamsTest {
 
         @Test

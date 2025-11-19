@@ -30,8 +30,8 @@ public final class NutritionSearchService {
     public List<Food> searchNutrition(NutritionSearchRequest request) {
         return foods.stream()
                 .filter(isValidFoodItemForSearchCriteria(request))
-                .limit(request.limit())
                 .sorted(buildComparator(request))
+                .limit(request.limit())
                 .toList();
     }
 
