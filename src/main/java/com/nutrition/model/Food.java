@@ -1,5 +1,8 @@
 package com.nutrition.model;
 
+import com.nutrition.dto.FoodDTO;
+import com.nutrition.util.FoodUtils;
+
 public record Food(
     String name,
     Integer calories,
@@ -11,5 +14,15 @@ public record Food(
         LOW,
         MEDIUM,
         HIGH
+    }
+
+    public Food(FoodDTO dto) {
+        this(
+                dto.name(),
+                dto.calories(),
+                dto.totalFat(),
+                FoodUtils.getFatRating(dto.totalFat()),
+                dto.caffeine()
+        );
     }
 }
