@@ -16,6 +16,7 @@ import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 import static com.nutrition.model.Food.FatRating.HIGH;
 import static com.nutrition.model.Food.FatRating.LOW;
@@ -46,7 +47,7 @@ public final class NutritionSearchService {
 
     public List<Food> searchNutrition(NutritionSearchRequest request) {
         return loadFromCsvFile(csvFile).stream()
-            .filter(item -> true)
+            .filter(isValidFoodItemForSearchCriteria(request))
             .limit(request.limit())
             .sorted(buildComparator(request))
             .toList();
@@ -112,5 +113,23 @@ public final class NutritionSearchService {
         } else {
             return MEDIUM;
         }
+    }
+
+    private Predicate<Food> isValidFoodItemForSearchCriteria(NutritionSearchRequest request) {
+        Predicate<Food> predicate = food -> true;
+
+        if( request.minCalories() != null) {
+            predicate = predicate.and(food -> food.calories() >= request.minCalories());
+        }
+
+        if( request.maxCalories() != null) {
+            predicate = predicate.and(food -> food.calories() <= request.maxCalories());
+        }
+
+        if (request.fatRating() != null) {
+            predicate = predicate.and(food -> food.fatRating() == request.fatRating());
+        }
+
+        return predicate;
     }
 }
