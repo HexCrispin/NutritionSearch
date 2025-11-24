@@ -19,9 +19,10 @@ Is this something required?
 
 Ensure that the correct data is parsed to the service
 
-## 4: Build an end to end integration test
+## 4: Split tests into unit and integration tests
 
 Test cases for valid search, sort and limit ensuring is handled correctly
 
 Test cases for invalid search terms ensuring exceptions are handled correctly
 
+Rewrite tests for testing business logic
