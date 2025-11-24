@@ -2,7 +2,7 @@ package com.nutrition;
 
 import com.nutrition.dataLoader.DataLoader;
 import com.nutrition.dataLoader.DataLoaderFactory;
-import com.nutrition.exception.CsvFileLoadingException;
+import com.nutrition.exception.FileLoadingException;
 import com.nutrition.model.Food;
 import com.nutrition.service.NutritionSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class NutritionSearchApplication {
             var nutritionData = new ClassPathResource(nutritionDataFile);
             return nutritionData.getFile();
         } catch (IOException exception) {
-            throw new CsvFileLoadingException(exception);
+            throw new FileLoadingException(exception);
         }
     }
 

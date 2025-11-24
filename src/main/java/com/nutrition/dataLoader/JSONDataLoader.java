@@ -38,7 +38,7 @@ public class JSONDataLoader implements DataLoader {
             }
 
         } catch (IOException e) {
-            throw new RuntimeException("Error Laoding from JSON File, please review.");
+            throw new RuntimeException("Error loading from JSON File, please review.");
         }
 
         return foods;
@@ -49,7 +49,7 @@ public class JSONDataLoader implements DataLoader {
     }
 
     private static boolean isValidNode(FoodDTO dto) {
-        return dto.name() != null && !dto.name().isBlank() &&
+        return StringUtils.isNotBlank(dto.name()) &&
                 dto.calories() != null  &&
                 dto.totalFat() != null &&
                 StringUtils.isNotBlank(dto.caffeine());
